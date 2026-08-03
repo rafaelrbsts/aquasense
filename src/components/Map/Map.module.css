@@ -1,0 +1,227 @@
+.wrapper {
+  position: relative;
+  height: 100%;
+  min-height: 480px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background-color: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+}
+
+.map {
+  height: 100%;
+  width: 100%;
+}
+
+.overlay {
+  position: absolute;
+  z-index: 500;
+  right: 12px;
+  top: 12px;
+  padding: 8px 12px;
+  background-color: rgba(255, 255, 255, 0.94);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-sm);
+}
+
+.baseSwitch {
+  display: flex;
+  gap: 4px;
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid var(--color-border);
+}
+
+.baseButton {
+  flex: 1;
+  padding: 3px 10px;
+  font-family: inherit;
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: var(--color-text-muted);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.baseButton:hover {
+  border-color: var(--color-border-strong);
+  color: var(--color-text);
+}
+
+.baseButtonActive,
+.baseButtonActive:hover {
+  color: var(--color-green-dark);
+  background-color: var(--color-green-soft);
+  border-color: #c5ddcf;
+}
+
+.resetButton {
+  width: 100%;
+  margin-top: 5px;
+  padding: 3px 8px;
+  font-family: inherit;
+  font-size: 0.625rem;
+  font-weight: 500;
+  color: var(--color-blue);
+  background: none;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.resetButton:hover {
+  background-color: var(--color-blue-soft);
+}
+
+.overlayTitle {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-green-dark);
+}
+
+.overlayMeta {
+  font-size: 0.6875rem;
+  color: var(--color-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- Marcadores ---------- */
+
+.pinWrap {
+  display: block;
+  width: 24px;
+  height: 30px;
+  position: relative;
+}
+
+.pin {
+  position: absolute;
+  left: 3px;
+  top: 2px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+  border: 2px solid #ffffff;
+  box-shadow: 0 1px 3px rgba(22, 33, 29, 0.4);
+}
+
+.pinIdeal {
+  background-color: #1e7a4f;
+}
+
+.pinAlerta {
+  background-color: #e0a800;
+}
+
+.pinCritico {
+  background-color: #c0392b;
+  animation: pinPulse 1.6s ease-in-out infinite;
+}
+
+.pinSelected {
+  outline: 2px solid rgba(31, 95, 168, 0.85);
+  outline-offset: 2px;
+}
+
+@keyframes pinPulse {
+  0%,
+  100% {
+    box-shadow: 0 1px 3px rgba(22, 33, 29, 0.4), 0 0 0 0 rgba(192, 57, 43, 0.45);
+  }
+  60% {
+    box-shadow: 0 1px 3px rgba(22, 33, 29, 0.4), 0 0 0 7px rgba(192, 57, 43, 0);
+  }
+}
+
+/* ---------- Popup ---------- */
+
+.popup {
+  padding: 12px 14px 12px;
+}
+
+.popupHead {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.popupName {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.popupType {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.6875rem;
+  color: var(--color-text-muted);
+  margin-top: 2px;
+}
+
+.badge {
+  flex-shrink: 0;
+  padding: 3px 8px;
+  border-radius: 3px;
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.section {
+  margin-top: 10px;
+}
+
+.sectionTitle {
+  font-size: 0.5625rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-faint);
+  margin-bottom: 6px;
+}
+
+.row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 3px 0;
+}
+
+.rowLabel {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+}
+
+.rowValue {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-text);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+.phValue {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+@media (max-width: 900px) {
+  .wrapper {
+    min-height: 400px;
+  }
+}
