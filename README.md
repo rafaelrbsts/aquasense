@@ -5,6 +5,8 @@ instalados em **poços artesianos** e **criadouros de peixes** de **Rondônia**.
 
 Startup fictícia amazônica — projeto acadêmico.
 
+**Demonstração:** https://aquasensero.vercel.app
+
 ## Como executar
 
 ```bash
@@ -18,7 +20,8 @@ npm run preview  # serve o build
 
 O projeto é um site estático — o build gera `dist/` sem necessidade de servidor.
 
-Na **Vercel**, o framework Vite é detectado automaticamente:
+Hospedado na **Vercel** em https://aquasensero.vercel.app, com deploy automático a cada push
+na `main`. O framework Vite é detectado automaticamente:
 
 | Configuração      | Valor           |
 | ----------------- | --------------- |
@@ -27,7 +30,6 @@ Na **Vercel**, o framework Vite é detectado automaticamente:
 | Output Directory  | `dist`          |
 | Install Command   | `npm install`   |
 
-Cada push na `main` gera um novo deploy.
 
 ## Apresentação offline
 
