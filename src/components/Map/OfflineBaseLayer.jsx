@@ -28,6 +28,9 @@ function bindMunicipioInteractions(feature, layer) {
   layer.on({
     mouseover: (event) => event.target.setStyle({ fillColor: '#e6efe9' }),
     mouseout: (event) => event.target.setStyle({ fillColor: municipioStyle.fillColor }),
+    // Sem isto o navegador foca o <path> ao clicar: desenha o anel de foco
+    // padrão sobre o mapa e rola a página até o elemento focado.
+    mousedown: (event) => event.originalEvent.preventDefault(),
   });
 }
 

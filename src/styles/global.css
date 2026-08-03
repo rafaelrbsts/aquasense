@@ -72,6 +72,12 @@ a {
   outline-offset: 2px;
 }
 
+/* O anel de foco padrão em geometrias SVG do Leaflet desenharia um retângulo
+   sobre o mapa; a navegação por teclado continua nos marcadores e controles. */
+.leaflet-container path.leaflet-interactive:focus {
+  outline: none;
+}
+
 /* Ajustes finos sobre o CSS padrão do Leaflet */
 .leaflet-container {
   font-family: inherit;

@@ -95,7 +95,13 @@ export default function SensorMap({ sensors, selectedId, focus, onSelect, lastUp
             }}
             eventHandlers={{ click: () => onSelect(sensor.id) }}
           >
-            <Popup autoPan closeButton={false}>
+            {/* O padding superior evita que o popup abra sob o painel flutuante. */}
+            <Popup
+              autoPan
+              autoPanPaddingTopLeft={[24, 130]}
+              autoPanPaddingBottomRight={[24, 24]}
+              closeButton={false}
+            >
               <SensorPopup sensor={sensor} />
             </Popup>
           </Marker>
