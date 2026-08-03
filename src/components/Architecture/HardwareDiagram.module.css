@@ -1,0 +1,458 @@
+.wrap {
+  margin-top: 4px;
+}
+
+.svgWrap {
+  display: block;
+}
+
+.svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 1040px;
+  margin-inline: auto;
+  overflow: visible;
+}
+
+/* ------------------------------------------------------------------ faces */
+
+.faceTop,
+.faceRight,
+.faceLeft {
+  stroke: rgba(15, 61, 46, 0.16);
+  stroke-width: 0.6;
+  stroke-linejoin: round;
+}
+
+/* Placa de circuito: degraus de sombra do verde institucional */
+.board .faceTop {
+  fill: var(--color-green-amazon);
+}
+.board .faceRight {
+  fill: #196842;
+}
+.board .faceLeft {
+  fill: #135334;
+}
+
+/* Módulo metálico blindado */
+.module .faceTop {
+  fill: #3c4a44;
+}
+.module .faceRight {
+  fill: #303c37;
+}
+.module .faceLeft {
+  fill: #262f2b;
+}
+
+.shield .faceTop {
+  fill: #8b9a94;
+}
+.shield .faceRight {
+  fill: #74827c;
+}
+.shield .faceLeft {
+  fill: #616e69;
+}
+
+.chip .faceTop {
+  fill: #2c3733;
+}
+.chip .faceRight {
+  fill: #232c29;
+}
+.chip .faceLeft {
+  fill: #1b2320;
+}
+
+.metal .faceTop {
+  fill: #b9c4bf;
+}
+.metal .faceRight {
+  fill: #9daaa4;
+}
+.metal .faceLeft {
+  fill: #85918b;
+}
+
+.pin .faceTop {
+  fill: #d8b45a;
+}
+.pin .faceRight {
+  fill: #bf9c45;
+}
+.pin .faceLeft {
+  fill: #a68536;
+}
+
+.glassBody .faceTop {
+  fill: #cfdde6;
+}
+.glassBody .faceRight {
+  fill: #b3c6d3;
+}
+.glassBody .faceLeft {
+  fill: #99b0bf;
+}
+
+.steel .faceTop {
+  fill: #c3ccc8;
+}
+.steel .faceRight {
+  fill: #a9b4af;
+}
+.steel .faceLeft {
+  fill: #919d98;
+}
+
+/* ------------------------------------------------------------------ cena */
+
+.shadow {
+  fill: rgba(15, 61, 46, 0.07);
+}
+
+/* Volume d'água translúcido: a sonda submersa aparece por trás */
+.tank {
+  opacity: 0.58;
+}
+.tank .faceTop {
+  fill: #cfe2f2;
+}
+.tank .faceRight {
+  fill: #a6c6e2;
+}
+.tank .faceLeft {
+  fill: #8bb2d4;
+}
+.tank .faceTop,
+.tank .faceRight,
+.tank .faceLeft {
+  stroke: var(--color-blue);
+  stroke-width: 0.8;
+}
+
+.waterLabel {
+  font-size: 11px;
+  fill: var(--color-blue);
+  text-anchor: middle;
+}
+
+.bulb {
+  fill: #dbe9f2;
+  stroke: var(--color-blue);
+  stroke-width: 1.2;
+}
+
+.tip {
+  fill: #b9c4bf;
+  stroke: #7d8a85;
+  stroke-width: 1;
+}
+
+.trimpot {
+  fill: #3f6ec2;
+  stroke: #26467d;
+  stroke-width: 1;
+}
+
+.bnc {
+  fill: #a9b4af;
+  stroke: #6f7c77;
+  stroke-width: 1.2;
+}
+
+.led {
+  fill: var(--status-critico);
+  stroke: #8f2b20;
+  stroke-width: 0.8;
+}
+
+.meander,
+.antenna {
+  fill: none;
+  stroke: #d8b45a;
+  stroke-width: 2;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.antenna {
+  stroke: #8b9a94;
+  stroke-width: 2.5;
+}
+
+.antennaTip {
+  fill: #8b9a94;
+}
+
+.waves path {
+  fill: none;
+  stroke: var(--color-blue);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+}
+
+.silkLight {
+  font-size: 9px;
+  font-weight: 600;
+  fill: rgba(255, 255, 255, 0.62);
+}
+
+/* ------------------------------------------------------------------ fios */
+
+.wireBase {
+  fill: none;
+  stroke-width: 2;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  transition: stroke 0.15s ease;
+}
+
+.signal .wireBase {
+  stroke: #7fa892;
+}
+.power .wireBase {
+  stroke: var(--status-alerta);
+}
+.ground .wireBase {
+  stroke: var(--color-text-muted);
+}
+
+.wire {
+  transition: opacity 0.15s ease;
+}
+
+.wireDim {
+  opacity: 0.2;
+}
+
+.wireLit .wireBase {
+  stroke: var(--color-green-amazon);
+  stroke-width: 2.5;
+}
+
+.pulse {
+  fill: none;
+  stroke: var(--color-green-dark);
+  stroke-width: 3.4;
+  stroke-linecap: round;
+  stroke-dasharray: 0.22 0.78;
+  animation: flow 1.9s linear infinite;
+}
+
+@keyframes flow {
+  from {
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* ------------------------------------------------------------- callouts */
+
+.leaderHalo {
+  fill: none;
+  stroke: var(--color-surface);
+  stroke-width: 3.5;
+  stroke-linejoin: round;
+  opacity: 0.9;
+}
+
+.leader {
+  fill: none;
+  stroke: var(--color-border-strong);
+  stroke-width: 1;
+  stroke-dasharray: 4 3;
+  stroke-linejoin: round;
+  transition: stroke 0.15s ease;
+}
+
+.dot {
+  fill: var(--color-surface);
+  stroke: var(--color-border-strong);
+  stroke-width: 2;
+  transition: fill 0.15s ease, stroke 0.15s ease;
+}
+
+.dotHit {
+  fill: transparent;
+  cursor: pointer;
+}
+
+.pointActive .leader,
+.pointSelected .leader {
+  stroke: var(--color-green-amazon);
+  stroke-dasharray: none;
+  stroke-width: 1.4;
+}
+
+.pointActive .dot,
+.pointSelected .dot {
+  fill: var(--color-green-amazon);
+  stroke: var(--color-green-soft);
+}
+
+/* Folga de 6px por lado: o foreignObject recorta o que extravasa e cortaria
+   o anel de foco de 2px + offset de 2px do global.css */
+.slot {
+  padding: 6px;
+  height: 100%;
+}
+
+.calloutCard {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  width: 100%;
+  height: 100%;
+  padding: 8px 10px;
+  font-family: inherit;
+  text-align: left;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: border-color 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.calloutCard[data-align='end'] {
+  text-align: right;
+  align-items: flex-end;
+}
+
+.calloutCard:hover {
+  border-color: var(--color-border-strong);
+  box-shadow: var(--shadow-sm);
+}
+
+.pointActive .calloutCard,
+.pointSelected .calloutCard {
+  border-color: #c5ddcf;
+  background-color: var(--color-green-soft);
+}
+
+.calloutLabel {
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--color-text);
+}
+
+.calloutPin {
+  font-size: 0.625rem;
+  font-weight: 500;
+  line-height: 1.35;
+  color: var(--color-text-faint);
+}
+
+.pointActive .calloutPin,
+.pointSelected .calloutPin {
+  color: var(--color-green-amazon);
+}
+
+/* -------------------------------------------------------------- detalhe */
+
+.detail {
+  max-width: 720px;
+  margin: 6px auto 0;
+  min-height: 104px;
+  padding: 14px 16px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-canvas);
+}
+
+.detailPin {
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-green-amazon);
+  margin-bottom: 4px;
+}
+
+.detailTitle {
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+.detailText {
+  margin-top: 6px;
+  font-size: 0.75rem;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+}
+
+.detailEmpty {
+  font-size: 0.75rem;
+  line-height: 1.6;
+  color: var(--color-text-faint);
+}
+
+/* ------------------------------------------- fallback em telas estreitas */
+
+.pointList {
+  display: none;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 10px;
+}
+
+.pointItem {
+  padding: 12px 14px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+}
+
+.itemPin {
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-green-amazon);
+  margin-bottom: 3px;
+}
+
+.itemTitle {
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+.itemText {
+  margin-top: 5px;
+  font-size: 0.75rem;
+  line-height: 1.55;
+  color: var(--color-text-muted);
+}
+
+@media (max-width: 720px) {
+  .svgWrap {
+    display: none;
+  }
+
+  .pointList {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .pointList {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* O bloco global só zera a duração, o que deixaria o traço do pulso congelado
+   no início do fio. Aqui ele vira destaque sólido. */
+@media (prefers-reduced-motion: reduce) {
+  .pulse {
+    animation: none;
+    stroke-dasharray: none;
+    stroke-width: 2.5;
+    opacity: 0.9;
+  }
+}

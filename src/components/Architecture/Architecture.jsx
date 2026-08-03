@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import ScienceOutlinedIcon from '@mui/icons-material/ScienceOutlined';
 import MemoryOutlinedIcon from '@mui/icons-material/MemoryOutlined';
 import SettingsInputAntennaOutlinedIcon from '@mui/icons-material/SettingsInputAntennaOutlined';
@@ -6,9 +7,13 @@ import ApiOutlinedIcon from '@mui/icons-material/ApiOutlined';
 import DnsOutlinedIcon from '@mui/icons-material/DnsOutlined';
 import StorageOutlinedIcon from '@mui/icons-material/StorageOutlined';
 import MonitorOutlinedIcon from '@mui/icons-material/MonitorOutlined';
+import AccountTreeOutlinedIcon from '@mui/icons-material/AccountTreeOutlined';
+import DeveloperBoardOutlinedIcon from '@mui/icons-material/DeveloperBoardOutlined';
+import HardwareDiagram from './HardwareDiagram';
 import styles from './Architecture.module.css';
 
 const iconSx = { fontSize: 16 };
+const viewIconSx = { fontSize: 14 };
 
 const BLOCKS = [
   {
@@ -64,6 +69,23 @@ const BLOCKS = [
   },
 ];
 
+const VIEWS = [
+  {
+    id: 'fluxo',
+    label: 'Fluxo',
+    icon: <AccountTreeOutlinedIcon sx={viewIconSx} />,
+    subtitle:
+      'Fluxo de dados de ponta a ponta. Cada leitura percorre oito etapas até chegar ao mapa, com transporte escolhido conforme a conectividade disponível na propriedade.',
+  },
+  {
+    id: 'diagrama',
+    label: 'Diagrama',
+    icon: <DeveloperBoardOutlinedIcon sx={viewIconSx} />,
+    subtitle:
+      'Detalhe do nó instalado em campo. Passe o mouse sobre um ponto para ver o caminho do sinal e clique para ler a função de cada conexão.',
+  },
+];
+
 const STACK = [
   { label: 'Camada física', value: 'Sonda de pH + ESP32' },
   { label: 'Transporte', value: 'LoRaWAN 915 MHz / Wi-Fi' },
@@ -72,30 +94,56 @@ const STACK = [
 ];
 
 export default function Architecture() {
+  const [view, setView] = useState('fluxo');
+  const current = VIEWS.find((item) => item.id === view);
+
   return (
     <section className={styles.section} id="arquitetura">
       <div className={styles.head}>
-        <p className={styles.eyebrow}>Arquitetura IoT</p>
-        <h2 className={styles.title}>Do eletrodo em campo ao painel de monitoramento</h2>
-        <p className={styles.subtitle}>
-          Fluxo de dados de ponta a ponta. Cada leitura percorre oito etapas até chegar ao mapa,
-          com transporte escolhido conforme a conectividade disponível na propriedade.
-        </p>
+        <div className={styles.headText}>
+          <p className={styles.eyebrow}>Arquitetura IoT</p>
+          <h2 className={styles.title}>Do eletrodo em campo ao painel de monitoramento</h2>
+          <p className={styles.subtitle}>{current.subtitle}</p>
+        </div>
+
+        <div className={styles.viewSwitch} role="group" aria-label="Modo de visualização">
+          {VIEWS.map(({ id, label, icon }) => (
+            <button
+              key={id}
+              type="button"
+              className={`${styles.viewButton} ${view === id ? styles.viewButtonActive : ''}`}
+              aria-pressed={view === id}
+              aria-controls="arquitetura-corpo"
+              onClick={() => setView(id)}
+            >
+              {icon}
+              {label}
+            </button>
+          ))}
+        </div>
       </div>
 
-      <div className={styles.flow}>
-        {BLOCKS.map((block, index) => (
-          <article key={block.name} className={styles.block}>
-            <div className={styles.blockHead}>
-              <span className={`${styles.icon} ${block.accent ? styles.iconBlue : ''}`}>
-                {block.icon}
-              </span>
-              <h3 className={styles.name}>{block.name}</h3>
-              <span className={styles.step}>{String(index + 1).padStart(2, '0')}</span>
-            </div>
-            <p className={styles.description}>{block.description}</p>
-          </article>
-        ))}
+      {/* O wrapper envolve o .flow — nunca fica entre ele e os .block, senão os
+          seletores de seta `.flow > .block:nth-child(4n)` param de casar. */}
+      <div id="arquitetura-corpo">
+        {view === 'fluxo' ? (
+          <div className={styles.flow}>
+            {BLOCKS.map((block, index) => (
+              <article key={block.name} className={styles.block}>
+                <div className={styles.blockHead}>
+                  <span className={`${styles.icon} ${block.accent ? styles.iconBlue : ''}`}>
+                    {block.icon}
+                  </span>
+                  <h3 className={styles.name}>{block.name}</h3>
+                  <span className={styles.step}>{String(index + 1).padStart(2, '0')}</span>
+                </div>
+                <p className={styles.description}>{block.description}</p>
+              </article>
+            ))}
+          </div>
+        ) : (
+          <HardwareDiagram />
+        )}
       </div>
 
       <div className={styles.stackNote}>
