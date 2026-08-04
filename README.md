@@ -65,9 +65,13 @@ de arquitetura são componentes próprios.
 src/
 ├── components/
 │   ├── About/          Problema, solução e benefícios
-│   ├── Architecture/   Diagrama do fluxo IoT (8 blocos)
+│   ├── Architecture/   Alterna entre duas vistas da arquitetura:
+│   │   ├── Architecture.jsx      Fluxo IoT em 8 blocos (vista "Fluxo")
+│   │   ├── HardwareDiagram.jsx   Vista "Diagrama": pontos, guias e detalhe
+│   │   ├── HardwareScene.jsx     Corpos da cena isométrica
+│   │   └── hardwareModel.js      Geometria 3D, fios e textos dos 12 pontos
 │   ├── Footer/
-│   ├── Header/         Logo, menu e status ONLINE
+│   ├── Header/         Logo e menu de navegação
 │   ├── Legend/         Faixas de pH por cor
 │   ├── Map/            SensorMap, OfflineBaseLayer, SensorPopup, markerIcons
 │   ├── SensorCard/     SensorCard + SensorPanel (painel lateral)
@@ -110,6 +114,10 @@ painel, popups e cores acompanham automaticamente.
 - Clique em um **marcador**: seleciona o sensor e destaca o card correspondente.
 - "Reenquadrar Rondônia" volta o mapa à visão do estado inteiro.
 - Passar o mouse sobre um município (base vetorial) mostra o nome.
-- Filtro do painel por tipo (Todos / Poços / Criadouros).
+- Filtro por tipo (Todos / Poços / Criadouros): recorta ao mesmo tempo a lista lateral e os
+  marcadores do mapa.
 - Menu do header navega entre as seções da página única.
 - Sensor em estado crítico: o card pisca discretamente e o marcador pulsa.
+- Seção **Arquitetura IoT**: o par de botões alterna entre a vista **Fluxo** (as 8 etapas) e a
+  vista **Diagrama** (o nó de campo em projeção isométrica). No diagrama, passar o mouse sobre um
+  ponto acende o caminho do sinal a montante; clicar fixa a descrição da conexão abaixo da cena.
