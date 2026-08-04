@@ -1,4 +1,4 @@
-import { SENSOR_TYPE } from '../utils/phStatus';
+import { SENSOR_TYPE } from '../utils/waterQuality';
 
 /** Zoom aplicado ao centralizar o mapa em um sensor específico. */
 export const FOCUS_ZOOM = 11;
@@ -18,6 +18,7 @@ export const mockSensors = [
     coords: [-8.7612, -63.9004],
     ph: 6.9,
     temperature: 27.4,
+    turbidity: 2.1,
     battery: 92,
   },
   {
@@ -29,6 +30,7 @@ export const mockSensors = [
     coords: [-8.793, -63.7],
     ph: 5.3,
     temperature: 28.1,
+    turbidity: 3.4,
     battery: 78,
   },
   {
@@ -40,6 +42,7 @@ export const mockSensors = [
     coords: [-10.8853, -61.9517],
     ph: 7.4,
     temperature: 29.2,
+    turbidity: 46.0,
     battery: 88,
   },
   {
@@ -51,6 +54,7 @@ export const mockSensors = [
     coords: [-9.9057, -63.0325],
     ph: 8.6,
     temperature: 30.5,
+    turbidity: 58.0,
     battery: 61,
   },
   {
@@ -62,6 +66,7 @@ export const mockSensors = [
     coords: [-10.7828, -65.3394],
     ph: 7.1,
     temperature: 27.9,
+    turbidity: 12.8,
     battery: 84,
   },
   {
@@ -73,6 +78,7 @@ export const mockSensors = [
     coords: [-11.4386, -61.4472],
     ph: 6.8,
     temperature: 28.6,
+    turbidity: 18.5,
     battery: 95,
   },
   {
@@ -84,6 +90,7 @@ export const mockSensors = [
     coords: [-12.7406, -60.1458],
     ph: 8.7,
     temperature: 26.3,
+    turbidity: 7.2,
     battery: 70,
   },
   {
@@ -95,6 +102,7 @@ export const mockSensors = [
     coords: [-11.7271, -61.7714],
     ph: 7.6,
     temperature: 29.8,
+    turbidity: 63.0,
     battery: 66,
   },
   {
@@ -106,6 +114,7 @@ export const mockSensors = [
     coords: [-10.439, -62.4664],
     ph: 6.3,
     temperature: 27.1,
+    turbidity: 4.1,
     battery: 81,
   },
   {
@@ -117,6 +126,7 @@ export const mockSensors = [
     coords: [-9.44, -61.98],
     ph: 7.0,
     temperature: 30.1,
+    turbidity: 71.0,
     battery: 90,
   },
 ];

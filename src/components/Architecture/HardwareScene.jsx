@@ -63,6 +63,20 @@ export default function HardwareScene() {
         cy={iso(...PROBES.ph.bulb)[1]}
         r="10"
       />
+      <IsoBox {...PROBES.turbidez} tone="optic" />
+      {/* Emissor e receptor frente a frente: é o vão entre eles que a água atravessa */}
+      <circle
+        className={styles.lens}
+        cx={iso(...PROBES.turbidez.head)[0] - 5}
+        cy={iso(...PROBES.turbidez.head)[1]}
+        r="3.6"
+      />
+      <circle
+        className={styles.lens}
+        cx={iso(...PROBES.turbidez.head)[0] + 5}
+        cy={iso(...PROBES.turbidez.head)[1]}
+        r="3.6"
+      />
       <IsoBox {...PROBES.temp} tone="steel" />
       <circle
         className={styles.tip}

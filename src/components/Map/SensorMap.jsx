@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { MapContainer, Marker, Popup, TileLayer, useMap } from 'react-leaflet';
 import { FOCUS_ZOOM } from '../../data/mockSensors';
-import { SENSOR_TYPE, SENSOR_TYPE_ALL, formatTime } from '../../utils/phStatus';
+import { SENSOR_TYPE, SENSOR_TYPE_ALL, formatTime } from '../../utils/waterQuality';
 import { getMarkerIcon } from './markerIcons';
 import OfflineBaseLayer, { RONDONIA_BOUNDS } from './OfflineBaseLayer';
 import SensorPopup from './SensorPopup';

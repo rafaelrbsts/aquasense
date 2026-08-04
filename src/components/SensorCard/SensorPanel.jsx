@@ -1,5 +1,5 @@
 import UpdateOutlinedIcon from '@mui/icons-material/UpdateOutlined';
-import { SENSOR_TYPE, SENSOR_TYPE_ALL, formatTime } from '../../utils/phStatus';
+import { SENSOR_TYPE, SENSOR_TYPE_ALL, formatTime } from '../../utils/waterQuality';
 import SensorCard from './SensorCard';
 import styles from './SensorPanel.module.css';
 

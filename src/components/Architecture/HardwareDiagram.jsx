@@ -46,9 +46,9 @@ export default function HardwareDiagram() {
         >
           <title id="hw-t">Esquema tridimensional do nó de campo AquaSense</title>
           <desc id="hw-d">
-            Eletrodo de pH e sonda de temperatura submersos, ligados a uma placa de
-            condicionamento e ao ESP32, que transmite por Wi-Fi ou LoRa. Doze pontos de conexão
-            anotados, cada um selecionável.
+            Eletrodo de pH, sensor óptico de turbidez e sonda de temperatura submersos, ligados a
+            uma placa de condicionamento e ao ESP32, que transmite por Wi-Fi ou LoRa. Treze pontos
+            de conexão anotados, cada um selecionável.
           </desc>
 
           <HardwareScene />

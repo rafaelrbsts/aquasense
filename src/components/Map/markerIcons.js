@@ -1,5 +1,5 @@
 import L from 'leaflet';
-import { STATUS } from '../../utils/phStatus';
+import { STATUS } from '../../utils/waterQuality';
 import styles from './Map.module.css';
 
 const STATUS_CLASS = {

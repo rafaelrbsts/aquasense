@@ -17,16 +17,16 @@ const viewIconSx = { fontSize: 14 };
 
 const BLOCKS = [
   {
-    name: 'Sensor de pH',
+    name: 'Sensores de pH e turbidez',
     icon: <ScienceOutlinedIcon sx={iconSx} />,
     description:
-      'Eletrodo submerso no poço ou tanque, com sonda de temperatura para compensação da leitura.',
+      'Eletrodo de pH e sensor óptico de turbidez submersos no poço ou tanque, com sonda de temperatura para compensação da leitura.',
   },
   {
     name: 'Microcontrolador ESP32',
     icon: <MemoryOutlinedIcon sx={iconSx} />,
     description:
-      'Converte o sinal analógico, aplica calibração e agrupa as leituras antes do envio.',
+      'Lê os dois canais analógicos, aplica a calibração de cada sonda e agrupa as leituras antes do envio.',
   },
   {
     name: 'LoRaWAN / Wi-Fi',
@@ -50,7 +50,7 @@ const BLOCKS = [
     name: 'Servidor',
     icon: <DnsOutlinedIcon sx={iconSx} />,
     description:
-      'Aplica as regras de faixa de pH, gera alertas e dispara notificações aos responsáveis.',
+      'Aplica as faixas de pH e turbidez, gera alertas e dispara notificações aos responsáveis.',
     accent: true,
   },
   {
@@ -87,7 +87,7 @@ const VIEWS = [
 ];
 
 const STACK = [
-  { label: 'Camada física', value: 'Sonda de pH + ESP32' },
+  { label: 'Camada física', value: 'Sondas de pH e turbidez + ESP32' },
   { label: 'Transporte', value: 'LoRaWAN 915 MHz / Wi-Fi' },
   { label: 'Backend', value: 'API REST + banco de série temporal' },
   { label: 'Frontend', value: 'React + Vite + Leaflet' },

@@ -5,12 +5,12 @@ import {
   seedReadings,
   startSimulation,
 } from '../services/sensorSimulator';
-import { STATUS, SENSOR_TYPE, getPhStatus } from '../utils/phStatus';
+import { STATUS, SENSOR_TYPE, getSensorStatus } from '../utils/waterQuality';
 
 /**
  * Mantém a rede de sensores viva: dispara um ciclo de leituras a cada
- * `intervalMs`, deriva o status de cada sensor pelo pH e consolida os
- * indicadores exibidos no topo do painel.
+ * `intervalMs`, deriva o status de cada sensor pelo pior entre pH e turbidez
+ * e consolida os indicadores exibidos no topo do painel.
  */
 export function useSensorSimulation(initialSensors, intervalMs = SIMULATION_INTERVAL_MS) {
   const [readings, setReadings] = useState(() => seedReadings(initialSensors));
@@ -25,7 +25,7 @@ export function useSensorSimulation(initialSensors, intervalMs = SIMULATION_INTE
   );
 
   const sensors = useMemo(
-    () => readings.map((sensor) => ({ ...sensor, status: getPhStatus(sensor.ph, sensor.type) })),
+    () => readings.map((sensor) => ({ ...sensor, status: getSensorStatus(sensor) })),
     [readings],
   );
 

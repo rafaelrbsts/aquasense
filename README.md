@@ -1,7 +1,7 @@
 # AquaSense
 
-Plataforma web (MVP) de monitoramento remoto da qualidade da água por sensores IoT de pH,
-instalados em **poços artesianos** e **criadouros de peixes** de **Rondônia**.
+Plataforma web (MVP) de monitoramento remoto da qualidade da água por sensores IoT de **pH** e
+**turbidez**, instalados em **poços artesianos** e **criadouros de peixes** de **Rondônia**.
 
 Startup fictícia amazônica — projeto acadêmico.
 
@@ -72,7 +72,7 @@ src/
 │   │   └── hardwareModel.js      Geometria 3D, fios e textos dos 12 pontos
 │   ├── Footer/
 │   ├── Header/         Logo e menu de navegação
-│   ├── Legend/         Faixas de pH por cor
+│   ├── Legend/         Cores de status + faixas de pH e turbidez
 │   ├── Map/            SensorMap, OfflineBaseLayer, SensorPopup, markerIcons
 │   ├── SensorCard/     SensorCard + SensorPanel (painel lateral)
 │   └── Stats/          Quatro indicadores superiores
@@ -84,29 +84,48 @@ src/
 │   ├── useSensorSimulation.js  Ciclo de leituras + indicadores
 │   └── useActiveSection.js     Menu ativo e rolagem entre seções
 ├── services/sensorSimulator.js Simulação da telemetria (5 s)
-├── utils/phStatus.js           Regras de negócio do pH
+├── utils/waterQuality.js       Faixas de pH e turbidez + status consolidado
 ├── styles/global.css           Tokens da paleta e reset
 ├── theme.js                    Tema Material UI
 ├── App.jsx
 └── main.jsx
 ```
 
-## Regras de negócio do pH
+## Regras de negócio
 
-O status **nunca é armazenado**: é sempre derivado da leitura por `getPhStatus(ph, tipo)`
-em `src/utils/phStatus.js`.
+O status **nunca é armazenado**: é sempre derivado das leituras por `getSensorStatus(sensor)`
+em `src/utils/waterQuality.js`, que devolve **o pior entre pH e turbidez**. Um poço com pH
+perfeito e turbidez acima do limite de potabilidade fica vermelho.
+
+### pH
 
 | Tipo                | Ideal 🟢  | Atenção 🟡              | Crítico 🔴            |
 | ------------------- | --------- | ----------------------- | --------------------- |
 | Poço artesiano      | 6,5 – 8,5 | 6,0 – 6,4 e 8,6 – 9,0   | < 6,0 ou > 9,0        |
 | Criadouro de peixes | 6,5 – 7,5 | 6,0 – 6,4 e 7,6 – 8,0   | < 6,0 ou > 8,0        |
 
+### Turbidez (NTU)
+
+| Tipo                | Ideal 🟢 | Atenção 🟡 | Crítico 🔴          |
+| ------------------- | -------- | ---------- | ------------------- |
+| Poço artesiano      | ≤ 5      | 5,1 – 10   | > 10                |
+| Criadouro de peixes | 25 – 80  | —          | < 25 ou > 80        |
+
+O 5 NTU do poço é o limite de potabilidade da **Portaria GM/MS 888/2021**, e a faixa é
+unilateral: em água de consumo, quanto mais limpa, melhor.
+
+Em criadouro a faixa é **bilateral**, e a borda de baixo não é um detalhe — água limpa demais
+tem pouca produtividade primária e favorece a planta aquática, do mesmo modo que turbidez alta
+demais bloqueia a luz. Como não há banda de tolerância, a turbidez de criadouro nunca fica em
+"atenção": só ideal ou crítica.
+
 ## Simulação
 
 `services/sensorSimulator.js` substitui, no MVP, o consumo da API REST. A cada **5 segundos**
-aplica um passeio aleatório sobre pH e temperatura de cada sensor, dentro de limites plausíveis.
-O hook `useSensorSimulation` recalcula status, indicadores e horário da última leitura — mapa,
-painel, popups e cores acompanham automaticamente.
+aplica um passeio aleatório sobre pH, temperatura e turbidez de cada sensor, dentro de limites
+plausíveis. A turbidez usa limites **por tipo** — um poço vive na casa de poucos NTU e um tanque
+opera uma ordem de grandeza acima. O hook `useSensorSimulation` recalcula status, indicadores e
+horário da última leitura — mapa, painel, popups e cores acompanham automaticamente.
 
 ## Interações
 

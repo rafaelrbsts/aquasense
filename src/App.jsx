@@ -10,7 +10,7 @@ import Footer from './components/Footer/Footer';
 import { useSensorSimulation } from './hooks/useSensorSimulation';
 import { useActiveSection } from './hooks/useActiveSection';
 import { mockSensors } from './data/mockSensors';
-import { SENSOR_TYPE_ALL, filterSensorsByType, formatTime } from './utils/phStatus';
+import { SENSOR_TYPE_ALL, filterSensorsByType, formatTime } from './utils/waterQuality';
 import styles from './App.module.css';
 
 const SECTION_IDS = ['dashboard', 'sensores', 'arquitetura', 'sobre'];
@@ -54,8 +54,8 @@ export default function App() {
           <div>
             <h1 className={styles.pageTitle}>Qualidade da água em tempo real</h1>
             <p className={styles.pageSubtitle}>
-              Rede de sensores de pH instalada em poços artesianos e criadouros de peixes de
-              Rondônia, com leituras transmitidas automaticamente para a plataforma.
+              Rede de sensores de pH e turbidez instalada em poços artesianos e criadouros de
+              peixes de Rondônia, com leituras transmitidas automaticamente para a plataforma.
             </p>
           </div>
           <p className={styles.liveTag}>

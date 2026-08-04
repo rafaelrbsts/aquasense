@@ -6,12 +6,19 @@ import {
   STATUS,
   STATUS_META,
   formatPh,
-} from '../../utils/phStatus';
+  formatTurbidity,
+  getPhStatus,
+  getTurbidityStatus,
+} from '../../utils/waterQuality';
 import styles from './SensorCard.module.css';
 
 export default function SensorCard({ sensor, isSelected, onSelect }) {
   const meta = STATUS_META[sensor.status];
   const TypeIcon = sensor.type === SENSOR_TYPE.POCO ? WaterOutlinedIcon : SetMealOutlinedIcon;
+  // Cada leitura carrega a cor do seu próprio status. Usar a cor consolidada
+  // aqui pintaria de vermelho um pH perfeito só porque a turbidez estourou.
+  const phMeta = STATUS_META[getPhStatus(sensor.ph, sensor.type)];
+  const turbidityMeta = STATUS_META[getTurbidityStatus(sensor.turbidity, sensor.type)];
 
   const className = [
     styles.card,
@@ -44,8 +51,11 @@ export default function SensorCard({ sensor, isSelected, onSelect }) {
       </span>
 
       <span className={styles.reading}>
-        <span className={styles.ph}>
+        <span className={styles.ph} style={{ '--reading-color': phMeta.color }}>
           {formatPh(sensor.ph)} <span className={styles.phUnit}>pH</span>
+        </span>
+        <span className={styles.turbidity} style={{ '--reading-color': turbidityMeta.color }}>
+          {formatTurbidity(sensor.turbidity)}
         </span>
         <span className={styles.status}>{meta.label}</span>
       </span>

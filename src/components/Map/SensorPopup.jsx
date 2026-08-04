@@ -7,13 +7,22 @@ import {
   formatDateTime,
   formatPh,
   formatTemperature,
+  formatTurbidity,
   getIdealRangeLabel,
-} from '../../utils/phStatus';
+  getIdealTurbidityLabel,
+  getPhStatus,
+  getTurbidityStatus,
+} from '../../utils/waterQuality';
 import styles from './Map.module.css';
 
 export default function SensorPopup({ sensor }) {
   const meta = STATUS_META[sensor.status];
   const TypeIcon = sensor.type === SENSOR_TYPE.POCO ? WaterOutlinedIcon : SetMealOutlinedIcon;
+
+  // Cada leitura é colorida pelo seu próprio status: assim dá para ver qual dos
+  // dois parâmetros puxou a cor do sensor.
+  const phMeta = STATUS_META[getPhStatus(sensor.ph, sensor.type)];
+  const turbidityMeta = STATUS_META[getTurbidityStatus(sensor.turbidity, sensor.type)];
 
   return (
     <div className={styles.popup}>
@@ -52,8 +61,14 @@ export default function SensorPopup({ sensor }) {
         </div>
         <div className={styles.row}>
           <span className={styles.rowLabel}>pH</span>
-          <span className={styles.rowValue} style={{ color: meta.color }}>
+          <span className={styles.rowValue} style={{ color: phMeta.color }}>
             <span className={styles.phValue}>{formatPh(sensor.ph)}</span>
+          </span>
+        </div>
+        <div className={styles.row}>
+          <span className={styles.rowLabel}>Turbidez</span>
+          <span className={styles.rowValue} style={{ color: turbidityMeta.color }}>
+            <span className={styles.phValue}>{formatTurbidity(sensor.turbidity)}</span>
           </span>
         </div>
         <div className={styles.row}>
@@ -61,8 +76,12 @@ export default function SensorPopup({ sensor }) {
           <span className={styles.rowValue}>{formatTemperature(sensor.temperature)}</span>
         </div>
         <div className={styles.row}>
-          <span className={styles.rowLabel}>Faixa ideal</span>
+          <span className={styles.rowLabel}>Faixa ideal · pH</span>
           <span className={styles.rowValue}>{getIdealRangeLabel(sensor.type)}</span>
+        </div>
+        <div className={styles.row}>
+          <span className={styles.rowLabel}>Faixa ideal · turbidez</span>
+          <span className={styles.rowValue}>{getIdealTurbidityLabel(sensor.type)}</span>
         </div>
       </div>
     </div>

@@ -11,7 +11,9 @@
  */
 
 export const VIEW_W = 940;
-export const VIEW_H = 560;
+// A coluna esquerda tem sete cartões desde que a sonda de turbidez entrou; a
+// altura acompanha a última faixa de ROW.
+export const VIEW_H = 604;
 
 const OX = 555;
 const OY = 211;
@@ -54,9 +56,15 @@ export const BODIES = {
  */
 export const WATER = { x: -114, y: 146, z: -102, w: 114, d: 92, h: 44 };
 
-/** Sondas, prismas estreitos que atravessam a superfície */
+/**
+ * Sondas, prismas estreitos que atravessam a superfície. A de turbidez fica
+ * entre as outras duas: em x não encosta em nenhuma, e o (x+y) intermediário a
+ * coloca entre elas também na vertical da tela, que é o que mantém as
+ * linhas-guia dos cartões sem cruzamento.
+ */
 export const PROBES = {
   ph: { x: -106, y: 194, z: -100, w: 12, d: 12, h: 104, bulb: [-100, 200, -96] },
+  turbidez: { x: -70, y: 190, z: -98, w: 14, d: 14, h: 96, head: [-63, 197, -94] },
   temp: { x: -24, y: 174, z: -94, w: 9, d: 9, h: 98, tip: [-19.5, 178.5, -92] },
 };
 
@@ -95,6 +103,14 @@ export const SEGMENTS = {
     [-4, 136, 30],
     [-4, 136, 5],
   ],
+  // Sobe a z 38 para passar por cima do fio da temperatura no trecho livre
+  'turb-gpio35': [
+    [-63, 197, 4],
+    [-63, 197, 38],
+    [-63, 152, 38],
+    [-4, 152, 38],
+    [-4, 152, 5],
+  ],
   'adc-cpu': [
     [2, 120, 5],
     [24, 116, 5],
@@ -106,6 +122,13 @@ export const SEGMENTS = {
     [34, 132, 5],
     [34, 82, 5],
     [26, 74, 5],
+  ],
+  // Terceira corrida paralela sobre a placa: ADC em x 24, temperatura em 34
+  'turb-cpu': [
+    [2, 152, 5],
+    [44, 148, 5],
+    [44, 86, 5],
+    [30, 76, 5],
   ],
   'cpu-wifi': [
     [42, 20, 9],
@@ -157,8 +180,10 @@ export const WIRE_TONE = {
   'probe-board': 'signal',
   'board-adc': 'signal',
   'temp-gpio4': 'signal',
+  'turb-gpio35': 'signal',
   'adc-cpu': 'signal',
   'temp-cpu': 'signal',
+  'turb-cpu': 'signal',
   'cpu-wifi': 'signal',
   'cpu-spi': 'signal',
   'spi-lora': 'signal',
@@ -173,15 +198,17 @@ export const WIRE_TONE = {
 
 const CHAIN_ADC = ['probe-board', 'board-adc', 'adc-cpu'];
 const CHAIN_TEMP = ['temp-gpio4', 'temp-cpu'];
+const CHAIN_TURB = ['turb-gpio35', 'turb-cpu'];
 const CHAIN_POWER = ['usb-reg', 'reg-3v3', 'v33-board'];
 
 const BOX_W = 186;
 const BOX_H = 68;
 const LEFT_X = 6;
 const RIGHT_X = 748;
-// Seis faixas por coluna. Cada ponto ocupa a faixa correspondente à altura da
-// sua âncora na tela, para as guias não se cruzarem.
-const ROW = [8, 98, 188, 278, 368, 458];
+// Sete faixas. Cada ponto ocupa a faixa correspondente à altura da sua âncora
+// na tela, para as guias não se cruzarem — a coluna esquerda usa as sete, a
+// direita só as seis primeiras.
+const ROW = [4, 92, 180, 268, 356, 444, 532];
 
 /**
  * `flow` é a cadeia a montante: passar o mouse no rádio LoRa acende o caminho
@@ -230,7 +257,7 @@ export const POINTS = [
     align: 'end',
     flow: CHAIN_ADC,
     description:
-      'A saída da placa entra no GPIO 34, pino somente de leitura ligado ao ADC1. O ADC2 fica indisponível enquanto o Wi-Fi está ativo, então a medição de pH usa obrigatoriamente o ADC1. O firmware tira a média de 64 amostras antes de aplicar a curva de calibração.',
+      'A saída da placa entra no GPIO 34, pino somente de leitura ligado ao ADC1. O ADC2 fica indisponível enquanto o Wi-Fi está ativo, então tanto o pH quanto a turbidez usam obrigatoriamente canais do ADC1. O firmware tira a média de 64 amostras antes de aplicar a curva de calibração.',
   },
   {
     id: 'sonda-ph',
@@ -244,11 +271,22 @@ export const POINTS = [
       'Eletrodo de vidro combinado, submerso no poço ou no tanque. Gera cerca de 59 mV por unidade de pH a 25 °C, com impedância altíssima — por isso o sinal passa antes pela placa de condicionamento. O conector BNC mantém o cabo blindado até a caixa.',
   },
   {
+    id: 'sonda-turbidez',
+    label: 'Sensor de turbidez',
+    pin: 'TS-300B · GPIO 35 · ADC1_CH7',
+    anchor: [-63, 197, -30],
+    box: [LEFT_X, ROW[5], BOX_W, BOX_H],
+    align: 'end',
+    flow: CHAIN_TURB,
+    description:
+      'Par de LED infravermelho e fototransistor montados frente a frente: quanto mais partícula em suspensão atravessa o vão, menos luz chega ao receptor. A saída analógica cai no GPIO 35 porque, com o Wi-Fi ligado, só o ADC1 responde — o mesmo motivo que prende o pH ao GPIO 34. A leitura em NTU vem de uma curva levantada com soluções padrão de formazina.',
+  },
+  {
     id: 'temperatura',
     label: 'Sonda de temperatura',
     pin: 'DS18B20 · GPIO 4',
     anchor: [-20, 178, -30],
-    box: [LEFT_X, ROW[5], BOX_W, BOX_H],
+    box: [LEFT_X, ROW[6], BOX_W, BOX_H],
     align: 'end',
     flow: CHAIN_TEMP,
     description:
@@ -261,7 +299,7 @@ export const POINTS = [
     anchor: [42, 0, 44],
     box: [RIGHT_X, ROW[0], BOX_W, BOX_H],
     align: 'start',
-    flow: [...CHAIN_ADC, 'cpu-wifi'],
+    flow: [...CHAIN_ADC, ...CHAIN_TURB, 'cpu-wifi'],
     description:
       'Antena em meandro gravada na própria placa do módulo, em 2,4 GHz. Onde a propriedade tem rede local o nó publica direto na API; o rádio só liga no instante do envio, porque é ele que consome quase toda a energia do ciclo.',
   },
@@ -272,7 +310,7 @@ export const POINTS = [
     anchor: [42, 44, 10.5],
     box: [RIGHT_X, ROW[1], BOX_W, BOX_H],
     align: 'start',
-    flow: [...CHAIN_ADC, ...CHAIN_TEMP],
+    flow: [...CHAIN_ADC, ...CHAIN_TEMP, ...CHAIN_TURB],
     description:
       'Dois núcleos de 240 MHz, 520 KB de RAM e 4 MB de flash. Um núcleo cuida da leitura e da calibração, o outro da pilha de rede. É aqui que a média das amostras, a compensação por temperatura e o pacote enviado à API são montados.',
   },
@@ -294,7 +332,7 @@ export const POINTS = [
     anchor: [89, 112, 5],
     box: [RIGHT_X, ROW[3], BOX_W, BOX_H],
     align: 'start',
-    flow: [...CHAIN_ADC, 'cpu-spi'],
+    flow: [...CHAIN_ADC, ...CHAIN_TURB, 'cpu-spi'],
     description:
       'Quatro linhas SPI ligam o ESP32 ao transceptor — NSS no GPIO 5, clock no 18, MISO no 19, MOSI no 23 — mais um pino de interrupção que avisa quando o pacote saiu. O ESP32 monta o quadro LoRaWAN e o SX1276 cuida da modulação.',
   },
@@ -316,7 +354,7 @@ export const POINTS = [
     anchor: [184, 122, 4],
     box: [RIGHT_X, ROW[5], BOX_W, BOX_H],
     align: 'start',
-    flow: [...CHAIN_ADC, 'cpu-spi', 'spi-lora', 'lora-ant'],
+    flow: [...CHAIN_ADC, ...CHAIN_TURB, 'cpu-spi', 'spi-lora', 'lora-ant'],
     description:
       'Transceptor na faixa de 915 MHz usada no Brasil, com antena de meia onda. Com fator de espalhamento alto o enlace chega a cerca de 10 km em área rural aberta, o suficiente para alcançar o gateway sem depender de cobertura celular.',
   },

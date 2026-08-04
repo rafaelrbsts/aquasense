@@ -98,7 +98,7 @@
   font-weight: 700;
   line-height: 1;
   font-variant-numeric: tabular-nums;
-  color: var(--status-color);
+  color: var(--reading-color);
 }
 
 .phUnit {
@@ -106,6 +106,16 @@
   font-weight: 600;
   color: var(--color-text-faint);
   letter-spacing: 0.06em;
+}
+
+/* Segunda leitura do card. Discreta ao lado do pH, mas colorida pelo próprio
+   status — é o que explica um card vermelho com o pH em dia. */
+.turbidity {
+  font-size: 0.625rem;
+  font-weight: 600;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  color: var(--reading-color);
 }
 
 .status {

@@ -97,6 +97,24 @@
   fill: #99b0bf;
 }
 
+/* Corpo do sensor de turbidez: plástico escuro, para não se confundir com o
+   vidro do eletrodo nem com o aço da sonda de temperatura. */
+.optic .faceTop {
+  fill: #4a5a63;
+}
+.optic .faceRight {
+  fill: #3a4850;
+}
+.optic .faceLeft {
+  fill: #2d383e;
+}
+
+.lens {
+  fill: #f0d9a8;
+  stroke: #b58b3c;
+  stroke-width: 1;
+}
+
 .steel .faceTop {
   fill: #c3ccc8;
 }
