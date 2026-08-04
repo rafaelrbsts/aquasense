@@ -22,6 +22,19 @@ export const SENSOR_TYPE_LABEL = {
   [SENSOR_TYPE.CRIADOURO]: 'Criadouro de Peixes',
 };
 
+/** Valor do filtro de tipo que dispensa qualquer recorte. */
+export const SENSOR_TYPE_ALL = 'todos';
+
+/**
+ * Recorta a rede pelo tipo escolhido no painel. O resultado alimenta ao mesmo
+ * tempo a lista lateral e os marcadores do mapa.
+ * @param {Array} sensors
+ * @param {'todos'|'poco'|'criadouro'} type
+ */
+export function filterSensorsByType(sensors, type) {
+  return type === SENSOR_TYPE_ALL ? sensors : sensors.filter((sensor) => sensor.type === type);
+}
+
 export const STATUS = {
   IDEAL: 'ideal',
   ALERTA: 'alerta',

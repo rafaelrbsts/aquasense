@@ -124,7 +124,8 @@ export default function Architecture() {
       </div>
 
       {/* O wrapper envolve o .flow — nunca fica entre ele e os .block, senão os
-          seletores de seta `.flow > .block:nth-child(4n)` param de casar. */}
+          seletores `.flow > .block:nth-child(...)` que montam a serpentina e as
+          setas param de casar. */}
       <div id="arquitetura-corpo">
         {view === 'fluxo' ? (
           <div className={styles.flow}>

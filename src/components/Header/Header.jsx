@@ -35,11 +35,6 @@ export default function Header({ activeSection, onNavigate }) {
             </button>
           ))}
         </nav>
-
-        <div className={styles.status} title="Conexão com o gateway LoRaWAN">
-          <span className={styles.dot} aria-hidden="true" />
-          <span className={styles.statusLabel}>ONLINE</span>
-        </div>
       </div>
     </header>
   );

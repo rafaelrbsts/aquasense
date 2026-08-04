@@ -1,4 +1,4 @@
-import { useCallback, useRef, useState } from 'react';
+import { useCallback, useMemo, useRef, useState } from 'react';
 import Header from './components/Header/Header';
 import Stats from './components/Stats/Stats';
 import SensorMap from './components/Map/SensorMap';
@@ -10,7 +10,7 @@ import Footer from './components/Footer/Footer';
 import { useSensorSimulation } from './hooks/useSensorSimulation';
 import { useActiveSection } from './hooks/useActiveSection';
 import { mockSensors } from './data/mockSensors';
-import { formatTime } from './utils/phStatus';
+import { SENSOR_TYPE_ALL, filterSensorsByType, formatTime } from './utils/phStatus';
 import styles from './App.module.css';
 
 const SECTION_IDS = ['dashboard', 'sensores', 'arquitetura', 'sobre'];
@@ -20,10 +20,24 @@ export default function App() {
   const { activeSection, scrollToSection } = useActiveSection(SECTION_IDS);
 
   const [selectedId, setSelectedId] = useState(null);
+  // Filtro de tipo vive aqui porque recorta a lista lateral e os marcadores do
+  // mapa ao mesmo tempo.
+  const [typeFilter, setTypeFilter] = useState(SENSOR_TYPE_ALL);
   // O mapa só recentraliza quando este objeto muda de referência, o que
   // permite reenquadrar o mesmo sensor em cliques repetidos.
   const [focus, setFocus] = useState(null);
   const focusCounter = useRef(0);
+
+  const visibleSensors = useMemo(
+    () => filterSensorsByType(sensors, typeFilter),
+    [sensors, typeFilter],
+  );
+
+  // Um sensor escondido pelo filtro não pode continuar destacado; derivar em
+  // vez de sincronizar por efeito evita um render com o estado inconsistente.
+  const visibleSelectedId = visibleSensors.some((sensor) => sensor.id === selectedId)
+    ? selectedId
+    : null;
 
   const handleCardSelect = useCallback((sensor) => {
     focusCounter.current += 1;
@@ -54,15 +68,19 @@ export default function App() {
 
         <div className={styles.workspace} id="sensores">
           <SensorMap
-            sensors={sensors}
-            selectedId={selectedId}
+            sensors={visibleSensors}
+            typeFilter={typeFilter}
+            selectedId={visibleSelectedId}
             focus={focus}
             onSelect={setSelectedId}
             lastUpdate={lastUpdate}
           />
           <SensorPanel
             sensors={sensors}
-            selectedId={selectedId}
+            visibleSensors={visibleSensors}
+            filter={typeFilter}
+            onFilterChange={setTypeFilter}
+            selectedId={visibleSelectedId}
             onSelect={handleCardSelect}
             lastUpdate={lastUpdate}
           />

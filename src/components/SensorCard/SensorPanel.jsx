@@ -1,23 +1,27 @@
-import { useMemo, useState } from 'react';
 import UpdateOutlinedIcon from '@mui/icons-material/UpdateOutlined';
-import { SENSOR_TYPE, formatTime } from '../../utils/phStatus';
+import { SENSOR_TYPE, SENSOR_TYPE_ALL, formatTime } from '../../utils/phStatus';
 import SensorCard from './SensorCard';
 import styles from './SensorPanel.module.css';
 
 const FILTERS = [
-  { id: 'todos', label: 'Todos' },
+  { id: SENSOR_TYPE_ALL, label: 'Todos' },
   { id: SENSOR_TYPE.POCO, label: 'Poços' },
   { id: SENSOR_TYPE.CRIADOURO, label: 'Criadouros' },
 ];
 
-export default function SensorPanel({ sensors, selectedId, onSelect, lastUpdate }) {
-  const [filter, setFilter] = useState('todos');
-
-  const visibleSensors = useMemo(
-    () => (filter === 'todos' ? sensors : sensors.filter((s) => s.type === filter)),
-    [sensors, filter],
-  );
-
+/**
+ * O filtro é controlado pelo App porque o mesmo recorte alimenta os marcadores
+ * do mapa — clicar em "Poços" precisa esconder os criadouros dos dois lados.
+ */
+export default function SensorPanel({
+  sensors,
+  visibleSensors,
+  filter,
+  onFilterChange,
+  selectedId,
+  onSelect,
+  lastUpdate,
+}) {
   return (
     <section className={styles.panel} aria-label="Painel de sensores">
       <div className={styles.header}>
@@ -34,7 +38,7 @@ export default function SensorPanel({ sensors, selectedId, onSelect, lastUpdate 
               type="button"
               className={`${styles.filter} ${filter === id ? styles.filterActive : ''}`}
               aria-pressed={filter === id}
-              onClick={() => setFilter(id)}
+              onClick={() => onFilterChange(id)}
             >
               {label}
             </button>

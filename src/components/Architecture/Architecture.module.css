@@ -173,13 +173,39 @@
   font-weight: 600;
 }
 
-/* Nas quebras de linha do grid a seta passa a apontar para baixo */
+/* Fluxo em serpentina: a linha seguinte é montada no sentido inverso, para que
+   a seta de quebra caia sobre a etapa seguinte (04 → 05) e não sobre o bloco
+   que por acaso está logo abaixo na grade (04 → 08). */
 @media (min-width: 1101px) {
-  .flow > .block:nth-child(4n)::after {
+  .flow > .block:nth-child(5) {
+    grid-area: 2 / 4;
+  }
+  .flow > .block:nth-child(6) {
+    grid-area: 2 / 3;
+  }
+  .flow > .block:nth-child(7) {
+    grid-area: 2 / 2;
+  }
+  .flow > .block:nth-child(8) {
+    grid-area: 2 / 1;
+  }
+
+  /* 04 fecha a primeira linha e desce para o 05 */
+  .flow > .block:nth-child(4)::after {
     right: 50%;
+    left: auto;
     top: auto;
     bottom: -20px;
     transform: translateX(50%) rotate(135deg);
+  }
+
+  /* a segunda linha corre da direita para a esquerda */
+  .flow > .block:nth-child(n + 5)::after {
+    right: auto;
+    left: -22px;
+    top: 50%;
+    bottom: auto;
+    transform: translateY(-50%) rotate(-135deg);
   }
 }
 
@@ -188,11 +214,41 @@
     grid-template-columns: repeat(2, 1fr);
   }
 
+  .flow > .block:nth-child(3) {
+    grid-area: 2 / 2;
+  }
+  .flow > .block:nth-child(4) {
+    grid-area: 2 / 1;
+  }
+  .flow > .block:nth-child(5) {
+    grid-area: 3 / 1;
+  }
+  .flow > .block:nth-child(6) {
+    grid-area: 3 / 2;
+  }
+  .flow > .block:nth-child(7) {
+    grid-area: 4 / 2;
+  }
+  .flow > .block:nth-child(8) {
+    grid-area: 4 / 1;
+  }
+
+  /* 02, 04 e 06 fecham a linha e descem para a etapa seguinte */
   .flow > .block:nth-child(2n)::after {
     right: 50%;
+    left: auto;
     top: auto;
     bottom: -20px;
     transform: translateX(50%) rotate(135deg);
+  }
+
+  /* 03 e 07 abrem uma linha invertida e apontam para a esquerda */
+  .flow > .block:nth-child(4n + 3)::after {
+    right: auto;
+    left: -22px;
+    top: 50%;
+    bottom: auto;
+    transform: translateY(-50%) rotate(-135deg);
   }
 }
 
@@ -215,9 +271,16 @@
     gap: 26px;
   }
 
+  /* Coluna única: a serpentina não faz sentido, todos voltam à ordem natural */
+  .flow > .block:nth-child(n) {
+    grid-area: auto;
+  }
+
   .flow > .block::after,
-  .flow > .block:nth-child(2n)::after {
+  .flow > .block:nth-child(2n)::after,
+  .flow > .block:nth-child(4n + 3)::after {
     right: 50%;
+    left: auto;
     top: auto;
     bottom: -18px;
     transform: translateX(50%) rotate(135deg);

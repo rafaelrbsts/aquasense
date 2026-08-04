@@ -84,41 +84,6 @@
   background-color: var(--color-green-soft);
 }
 
-.status {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 5px 12px 5px 10px;
-  border: 1px solid var(--color-border);
-  border-radius: 999px;
-  flex-shrink: 0;
-}
-
-.statusLabel {
-  font-size: 0.6875rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  color: var(--color-green-amazon);
-}
-
-.dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background-color: var(--status-ideal);
-  animation: pulse 2.4s ease-in-out infinite;
-}
-
-@keyframes pulse {
-  0%,
-  100% {
-    box-shadow: 0 0 0 0 rgba(30, 122, 79, 0.4);
-  }
-  50% {
-    box-shadow: 0 0 0 4px rgba(30, 122, 79, 0);
-  }
-}
-
 @media (max-width: 900px) {
   .nav {
     display: none;

@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { MapContainer, Marker, Popup, TileLayer, useMap } from 'react-leaflet';
 import { FOCUS_ZOOM } from '../../data/mockSensors';
-import { formatTime } from '../../utils/phStatus';
+import { SENSOR_TYPE, SENSOR_TYPE_ALL, formatTime } from '../../utils/phStatus';
 import { getMarkerIcon } from './markerIcons';
 import OfflineBaseLayer, { RONDONIA_BOUNDS } from './OfflineBaseLayer';
 import SensorPopup from './SensorPopup';
@@ -13,6 +13,13 @@ const BASE_LAYERS = [
   { id: 'vetorial', label: 'Vetorial', title: 'Malhas do IBGE embarcadas — funciona sem internet' },
   { id: 'osm', label: 'OSM', title: 'Tiles do OpenStreetMap — requer internet' },
 ];
+
+/** Deixa explícito no mapa qual recorte do painel está aplicado. */
+const POINT_LABEL = {
+  [SENSOR_TYPE_ALL]: 'pontos monitorados',
+  [SENSOR_TYPE.POCO]: 'poços monitorados',
+  [SENSOR_TYPE.CRIADOURO]: 'criadouros monitorados',
+};
 
 /**
  * Reage às seleções vindas do painel lateral: centraliza o mapa no sensor
@@ -30,7 +37,14 @@ function MapFocus({ focus, markerRefs }) {
   return null;
 }
 
-export default function SensorMap({ sensors, selectedId, focus, onSelect, lastUpdate }) {
+export default function SensorMap({
+  sensors,
+  typeFilter = SENSOR_TYPE_ALL,
+  selectedId,
+  focus,
+  onSelect,
+  lastUpdate,
+}) {
   const markerRefs = useRef({});
   const mapRef = useRef(null);
   // Base vetorial por padrão: a apresentação não pode depender de rede.
@@ -46,7 +60,7 @@ export default function SensorMap({ sensors, selectedId, focus, onSelect, lastUp
       <div className={styles.overlay}>
         <p className={styles.overlayTitle}>Rede de sensores — Rondônia</p>
         <p className={styles.overlayMeta}>
-          {sensors.length} pontos monitorados · atualizado às {formatTime(lastUpdate)}
+          {sensors.length} {POINT_LABEL[typeFilter]} · atualizado às {formatTime(lastUpdate)}
         </p>
         <div className={styles.baseSwitch} role="group" aria-label="Base cartográfica">
           {BASE_LAYERS.map(({ id, label, title }) => (
