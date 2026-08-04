@@ -43,7 +43,7 @@
   font-size: 0.9375rem;
   font-weight: 600;
   letter-spacing: -0.01em;
-  color: var(--color-green-dark);
+  color: var(--color-aqua-deep);
 }
 
 .tagline {
@@ -79,8 +79,8 @@
 }
 
 .navLinkActive {
-  color: var(--color-green-dark);
-  background-color: var(--color-green-soft);
+  color: var(--color-aqua-deep);
+  background-color: var(--color-aqua-soft);
 }
 
 @media (max-width: 900px) {
