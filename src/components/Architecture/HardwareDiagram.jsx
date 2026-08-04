@@ -138,18 +138,15 @@ export default function HardwareDiagram() {
           })}
         </svg>
 
-        <div className={styles.detail} role="status">
-          {selected ? (
-            <>
+        {/* A região live fica sempre montada e só a caixa entra e sai, senão o
+            leitor de tela não anuncia a primeira seleção. */}
+        <div role="status">
+          {selected && (
+            <div className={styles.detail}>
               <p className={styles.detailPin}>{selected.pin}</p>
               <h4 className={styles.detailTitle}>{selected.label}</h4>
               <p className={styles.detailText}>{selected.description}</p>
-            </>
-          ) : (
-            <p className={styles.detailEmpty}>
-              Passe o mouse sobre um ponto para ver o caminho do sinal e clique para ler o
-              detalhe da conexão.
-            </p>
+            </div>
           )}
         </div>
       </div>
