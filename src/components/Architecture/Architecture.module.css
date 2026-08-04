@@ -47,9 +47,9 @@
 
 .viewButtonActive,
 .viewButtonActive:hover {
-  color: var(--color-green-dark);
-  background-color: var(--color-green-soft);
-  border-color: #c5ddcf;
+  color: var(--color-aqua-deep);
+  background-color: var(--color-aqua-soft);
+  border-color: var(--color-aqua-border);
 }
 
 .eyebrow {
@@ -57,7 +57,7 @@
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--color-green-amazon);
+  color: var(--color-aqua-deep);
   margin-bottom: 6px;
 }
 
@@ -125,13 +125,13 @@
   border-radius: var(--radius-sm);
   display: grid;
   place-items: center;
-  color: var(--color-green-dark);
-  background-color: var(--color-green-soft);
+  color: var(--color-aqua-deep);
+  background-color: var(--color-aqua-soft);
 }
 
 .iconBlue {
-  color: var(--color-blue);
-  background-color: var(--color-blue-soft);
+  color: var(--color-slate);
+  background-color: var(--color-slate-soft);
 }
 
 .step {

@@ -56,9 +56,9 @@
 
 .baseButtonActive,
 .baseButtonActive:hover {
-  color: var(--color-green-dark);
-  background-color: var(--color-green-soft);
-  border-color: #c5ddcf;
+  color: var(--color-aqua-deep);
+  background-color: var(--color-aqua-soft);
+  border-color: var(--color-aqua-border);
 }
 
 .resetButton {
@@ -68,7 +68,7 @@
   font-family: inherit;
   font-size: 0.625rem;
   font-weight: 500;
-  color: var(--color-blue);
+  color: var(--color-aqua);
   background: none;
   border: none;
   border-radius: 3px;
@@ -77,13 +77,13 @@
 }
 
 .resetButton:hover {
-  background-color: var(--color-blue-soft);
+  background-color: var(--color-aqua-soft);
 }
 
 .overlayTitle {
   font-size: 0.75rem;
   font-weight: 600;
-  color: var(--color-green-dark);
+  color: var(--color-aqua-deep);
 }
 
 .overlayMeta {

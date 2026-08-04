@@ -60,9 +60,9 @@
 
 .filterActive,
 .filterActive:hover {
-  color: var(--color-green-dark);
-  background-color: var(--color-green-soft);
-  border-color: #c5ddcf;
+  color: var(--color-aqua-deep);
+  background-color: var(--color-aqua-soft);
+  border-color: var(--color-aqua-border);
 }
 
 .list {

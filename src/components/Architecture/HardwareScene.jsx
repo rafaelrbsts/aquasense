@@ -140,10 +140,14 @@ export default function HardwareScene() {
 
       {/* Volume d'água, sobre as sondas */}
       <IsoBox {...WATER} tone="tank" />
+      {/* Ancorado no canto frontal direito do volume, e não no meio da face:
+          as guias das sondas descem para a coluna esquerda e cruzavam o texto
+          quando ele ficava centralizado. O deslocamento tira a legenda da
+          faixa por onde as linhas passam. */}
       <text
         className={styles.waterLabel}
-        x={iso(-40, 240, -102)[0]}
-        y={iso(-40, 240, -102)[1] + 32}
+        x={iso(0, 238, -102)[0] + 76}
+        y={iso(0, 238, -102)[1] + 32}
       >
         Água do poço ou tanque
       </text>

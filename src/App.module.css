@@ -51,7 +51,7 @@
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background-color: var(--color-blue);
+  background-color: var(--color-aqua);
   animation: blink 5s ease-in-out infinite;
 }
 

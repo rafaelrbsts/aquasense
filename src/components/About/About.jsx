@@ -54,7 +54,7 @@ export default function About() {
 
         <div className={styles.block}>
           <h3 className={styles.blockTitle}>
-            <LightbulbOutlinedIcon sx={{ fontSize: 16, color: 'var(--color-green-amazon)' }} />
+            <LightbulbOutlinedIcon sx={{ fontSize: 16, color: 'var(--color-aqua-deep)' }} />
             Solução
           </h3>
           <p className={styles.text}>

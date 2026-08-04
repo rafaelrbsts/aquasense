@@ -1,26 +1,27 @@
 :root {
-  /* Paleta institucional AquaSense */
-  --color-green-dark: #0f3d2e;
-  --color-green-amazon: #1e7a4f;
-  --color-green-soft: #eaf3ee;
-  --color-blue: #1f5fa8;
-  --color-blue-soft: #eaf1f9;
-
-  /* Azuis do logo (matiz 203°). O tom cheio do símbolo, #0084d6, bate apenas
-     3,97:1 sobre branco — serve como marca, não como texto. Para texto vale o
-     --color-aqua-deep, que dá 6,86:1 sobre branco e 6,01:1 sobre a pílula. */
+  /* Paleta institucional AquaSense — matiz 203°, a do símbolo do logo.
+     O tom cheio, #0084d6, bate apenas 3,97:1 sobre branco: serve como marca e
+     grafismo, nunca como texto. Texto e ícones usam --color-aqua-deep, que dá
+     6,86:1 sobre branco e 6,01:1 sobre a própria pílula de estado ativo. */
   --color-aqua: #0084d6;
   --color-aqua-deep: #005e99;
   --color-aqua-soft: #e4f2fb;
+  --color-aqua-border: #b6dcf5;
+
+  /* Cinza-azulado da camada de software. Na Arquitetura os quatro blocos de
+     campo e os quatro de backend precisam continuar distinguíveis à primeira
+     vista; com ambos em azul a leitura dos oito blocos se perderia. */
+  --color-slate: #4a5f6d;
+  --color-slate-soft: #eef1f4;
 
   --color-surface: #ffffff;
-  --color-canvas: #f5f7f6;
-  --color-border: #e2e7e4;
-  --color-border-strong: #cfd8d3;
+  --color-canvas: #f5f7f9;
+  --color-border: #e2e7ec;
+  --color-border-strong: #cfd8e0;
 
-  --color-text: #16211d;
-  --color-text-muted: #5d6b65;
-  --color-text-faint: #8a958f;
+  --color-text: #16202a;
+  --color-text-muted: #5d6a75;
+  --color-text-faint: #8a949e;
 
   --status-ideal: #1e7a4f;
   --status-alerta: #c98a04;
@@ -34,8 +35,8 @@
   --radius-md: 6px;
   --radius-lg: 8px;
 
-  --shadow-sm: 0 1px 2px rgba(15, 61, 46, 0.06);
-  --shadow-md: 0 2px 8px rgba(15, 61, 46, 0.08);
+  --shadow-sm: 0 1px 2px rgba(4, 45, 70, 0.06);
+  --shadow-md: 0 2px 8px rgba(4, 45, 70, 0.08);
 
   --header-height: 60px;
   --content-max: 1440px;
@@ -75,7 +76,7 @@ a {
 }
 
 :focus-visible {
-  outline: 2px solid var(--color-blue);
+  outline: 2px solid var(--color-aqua);
   outline-offset: 2px;
 }
 

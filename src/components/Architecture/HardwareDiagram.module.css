@@ -20,14 +20,15 @@
 .faceTop,
 .faceRight,
 .faceLeft {
-  stroke: rgba(15, 61, 46, 0.16);
+  stroke: rgba(4, 45, 70, 0.16);
   stroke-width: 0.6;
   stroke-linejoin: round;
 }
 
-/* Placa de circuito: degraus de sombra do verde institucional */
+/* Placa de circuito. Fica verde mesmo com a paleta em azul: é a cor física do
+   laminado, não identidade visual — uma placa azul leria como outro hardware. */
 .board .faceTop {
-  fill: var(--color-green-amazon);
+  fill: #1e7a4f;
 }
 .board .faceRight {
   fill: #196842;
@@ -128,7 +129,7 @@
 /* ------------------------------------------------------------------ cena */
 
 .shadow {
-  fill: rgba(15, 61, 46, 0.07);
+  fill: rgba(4, 45, 70, 0.07);
 }
 
 /* Volume d'água translúcido: a sonda submersa aparece por trás */
@@ -147,19 +148,19 @@
 .tank .faceTop,
 .tank .faceRight,
 .tank .faceLeft {
-  stroke: var(--color-blue);
+  stroke: var(--color-aqua);
   stroke-width: 0.8;
 }
 
 .waterLabel {
   font-size: 11px;
-  fill: var(--color-blue);
+  fill: var(--color-aqua);
   text-anchor: middle;
 }
 
 .bulb {
   fill: #dbe9f2;
-  stroke: var(--color-blue);
+  stroke: var(--color-aqua);
   stroke-width: 1.2;
 }
 
@@ -207,7 +208,7 @@
 
 .waves path {
   fill: none;
-  stroke: var(--color-blue);
+  stroke: var(--color-aqua);
   stroke-width: 1.6;
   stroke-linecap: round;
 }
@@ -229,7 +230,7 @@
 }
 
 .signal .wireBase {
-  stroke: #7fa892;
+  stroke: #7fa3bc;
 }
 .power .wireBase {
   stroke: var(--status-alerta);
@@ -247,13 +248,13 @@
 }
 
 .wireLit .wireBase {
-  stroke: var(--color-green-amazon);
+  stroke: var(--color-aqua);
   stroke-width: 2.5;
 }
 
 .pulse {
   fill: none;
-  stroke: var(--color-green-dark);
+  stroke: var(--color-aqua-deep);
   stroke-width: 3.4;
   stroke-linecap: round;
   stroke-dasharray: 0.22 0.78;
@@ -302,15 +303,15 @@
 
 .pointActive .leader,
 .pointSelected .leader {
-  stroke: var(--color-green-amazon);
+  stroke: var(--color-aqua);
   stroke-dasharray: none;
   stroke-width: 1.4;
 }
 
 .pointActive .dot,
 .pointSelected .dot {
-  fill: var(--color-green-amazon);
-  stroke: var(--color-green-soft);
+  fill: var(--color-aqua);
+  stroke: var(--color-aqua-soft);
 }
 
 /* Folga de 6px por lado: o foreignObject recorta o que extravasa e cortaria
@@ -348,8 +349,8 @@
 
 .pointActive .calloutCard,
 .pointSelected .calloutCard {
-  border-color: #c5ddcf;
-  background-color: var(--color-green-soft);
+  border-color: var(--color-aqua-border);
+  background-color: var(--color-aqua-soft);
 }
 
 .calloutLabel {
@@ -368,7 +369,7 @@
 
 .pointActive .calloutPin,
 .pointSelected .calloutPin {
-  color: var(--color-green-amazon);
+  color: var(--color-aqua-deep);
 }
 
 /* -------------------------------------------------------------- detalhe */
@@ -388,7 +389,7 @@
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--color-green-amazon);
+  color: var(--color-aqua-deep);
   margin-bottom: 4px;
 }
 
@@ -425,7 +426,7 @@
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--color-green-amazon);
+  color: var(--color-aqua-deep);
   margin-bottom: 3px;
 }
 

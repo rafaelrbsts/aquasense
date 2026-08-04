@@ -17,7 +17,7 @@
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--color-green-amazon);
+  color: var(--color-aqua-deep);
   margin-bottom: 6px;
 }
 
@@ -70,7 +70,7 @@
 }
 
 .benefitIcon {
-  color: var(--color-green-amazon);
+  color: var(--color-aqua-deep);
   margin-top: 1px;
   flex-shrink: 0;
 }
@@ -98,7 +98,7 @@
 .figureValue {
   font-size: 1.125rem;
   font-weight: 600;
-  color: var(--color-green-dark);
+  color: var(--color-aqua-deep);
   letter-spacing: -0.01em;
 }
 

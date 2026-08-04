@@ -22,13 +22,13 @@
   display: grid;
   place-items: center;
   flex-shrink: 0;
-  color: var(--color-green-dark);
-  background-color: var(--color-green-soft);
+  color: var(--color-aqua-deep);
+  background-color: var(--color-aqua-soft);
 }
 
 .iconBlue {
-  color: var(--color-blue);
-  background-color: var(--color-blue-soft);
+  color: var(--color-slate);
+  background-color: var(--color-slate-soft);
 }
 
 .iconAlert {

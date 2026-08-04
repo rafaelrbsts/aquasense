@@ -20,13 +20,13 @@
 }
 
 .cardSelected {
-  border-color: var(--color-blue);
+  border-color: var(--color-aqua);
   border-left-color: var(--status-color);
-  background-color: var(--color-blue-soft);
+  background-color: var(--color-aqua-soft);
 }
 
 .cardSelected:hover {
-  background-color: var(--color-blue-soft);
+  background-color: var(--color-aqua-soft);
 }
 
 .cardCritical {

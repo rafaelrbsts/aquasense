@@ -7,14 +7,14 @@ import { createTheme } from '@mui/material/styles';
 const theme = createTheme({
   palette: {
     mode: 'light',
-    primary: { main: '#0f3d2e', light: '#1e7a4f', contrastText: '#ffffff' },
-    secondary: { main: '#1f5fa8', contrastText: '#ffffff' },
+    primary: { main: '#005e99', light: '#0084d6', contrastText: '#ffffff' },
+    secondary: { main: '#4a5f6d', contrastText: '#ffffff' },
     success: { main: '#1e7a4f' },
     warning: { main: '#c98a04' },
     error: { main: '#c0392b' },
-    background: { default: '#f5f7f6', paper: '#ffffff' },
-    text: { primary: '#16211d', secondary: '#5d6b65' },
-    divider: '#e2e7e4',
+    background: { default: '#f5f7f9', paper: '#ffffff' },
+    text: { primary: '#16202a', secondary: '#5d6a75' },
+    divider: '#e2e7ec',
   },
   shape: { borderRadius: 6 },
   typography: {

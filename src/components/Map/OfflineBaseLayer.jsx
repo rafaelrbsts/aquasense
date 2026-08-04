@@ -9,15 +9,15 @@ const IBGE_ATTRIBUTION = 'Malhas municipais: IBGE';
 export const RONDONIA_BOUNDS = L.geoJSON(estado).getBounds();
 
 const municipioStyle = {
-  fillColor: '#f4f7f5',
+  fillColor: '#f4f7fa',
   fillOpacity: 1,
-  color: '#c9d5cf',
+  color: '#ccd8e2',
   weight: 0.8,
 };
 
 const estadoStyle = {
   fill: false,
-  color: '#0f3d2e',
+  color: '#005e99',
   weight: 1.6,
   opacity: 0.8,
 };
@@ -26,7 +26,7 @@ const estadoStyle = {
 function bindMunicipioInteractions(feature, layer) {
   layer.bindTooltip(feature.properties.name, { sticky: true, direction: 'top' });
   layer.on({
-    mouseover: (event) => event.target.setStyle({ fillColor: '#e6efe9' }),
+    mouseover: (event) => event.target.setStyle({ fillColor: '#e3eef8' }),
     mouseout: (event) => event.target.setStyle({ fillColor: municipioStyle.fillColor }),
     // Sem isto o navegador foca o <path> ao clicar: desenha o anel de foco
     // padrão sobre o mapa e rola a página até o elemento focado.
