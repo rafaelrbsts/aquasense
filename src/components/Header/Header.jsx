@@ -1,4 +1,4 @@
-import WaterDropOutlinedIcon from '@mui/icons-material/WaterDropOutlined';
+import markUrl from '../../assets/aquasense-mark.png';
 import styles from './Header.module.css';
 
 const NAV_ITEMS = [
@@ -13,9 +13,8 @@ export default function Header({ activeSection, onNavigate }) {
     <header className={styles.header}>
       <div className={styles.inner}>
         <div className={styles.brand}>
-          <span className={styles.mark}>
-            <WaterDropOutlinedIcon sx={{ fontSize: 18 }} />
-          </span>
+          {/* alt vazio: o nome da marca vem logo ao lado, no wordmark */}
+          <img className={styles.mark} src={markUrl} alt="" width="32" height="32" />
           <span className={styles.wordmark}>
             <span className={styles.name}>AquaSense</span>
             <span className={styles.tagline}>Monitoramento Hídrico IoT</span>

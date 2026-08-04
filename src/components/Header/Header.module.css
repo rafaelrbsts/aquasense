@@ -24,14 +24,13 @@
   flex-shrink: 0;
 }
 
+/* A marca já é um símbolo fechado com fundo transparente: nada de moldura
+   colorida por baixo, que competiria com o gradiente do próprio logo. */
 .mark {
-  width: 30px;
-  height: 30px;
-  border-radius: var(--radius-sm);
-  background-color: var(--color-green-dark);
-  color: #fff;
-  display: grid;
-  place-items: center;
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  flex-shrink: 0;
 }
 
 .wordmark {
