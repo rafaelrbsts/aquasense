@@ -29,14 +29,6 @@
   letter-spacing: -0.015em;
 }
 
-.pageSubtitle {
-  margin-top: 4px;
-  font-size: 0.8125rem;
-  color: var(--color-text-muted);
-  max-width: 640px;
-  line-height: 1.6;
-}
-
 .liveTag {
   display: flex;
   align-items: center;

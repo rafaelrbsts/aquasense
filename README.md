@@ -52,6 +52,7 @@ OpenStreetMap/CARTO, apenas com internet). Deixe em *Vetorial* para apresentar.
 | Build     | Vite                           |
 | UI        | React 19 + Material UI (ícones e tema) |
 | Mapa      | React Leaflet + Leaflet        |
+| 3D        | Three.js (maquete do herói, carregada sob demanda) |
 | Geodados  | Malhas municipais do IBGE (GeoJSON local) |
 | Fonte     | @fontsource/inter (auto-hospedada) |
 | Estilo    | CSS Modules (sem Tailwind / Bootstrap) |
@@ -72,6 +73,9 @@ src/
 │   │   └── hardwareModel.js      Geometria 3D, fios e textos dos 12 pontos
 │   ├── Footer/
 │   ├── Header/         Logo e menu de navegação
+│   ├── Hero/           Abertura da página:
+│   │   ├── Hero.jsx             Chamada institucional + palco 3D
+│   │   └── aquaStage.js         Maquete Three.js (poço, criadouro, gateway)
 │   ├── Legend/         Cores de status + faixas de pH e turbidez
 │   ├── Map/            SensorMap, OfflineBaseLayer, SensorPopup, markerIcons
 │   ├── SensorCard/     SensorCard + SensorPanel (painel lateral)

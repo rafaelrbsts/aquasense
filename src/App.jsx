@@ -1,5 +1,6 @@
 import { useCallback, useMemo, useRef, useState } from 'react';
 import Header from './components/Header/Header';
+import Hero from './components/Hero/Hero';
 import Stats from './components/Stats/Stats';
 import SensorMap from './components/Map/SensorMap';
 import SensorPanel from './components/SensorCard/SensorPanel';
@@ -49,15 +50,13 @@ export default function App() {
     <div className={styles.page}>
       <Header activeSection={activeSection} onNavigate={scrollToSection} />
 
+      <Hero />
+
       <main className={styles.main}>
+        {/* O título e a descrição da plataforma agora abrem a página no herói;
+            aqui fica só o rótulo da seção de indicadores. */}
         <div className={styles.pageHead} id="dashboard">
-          <div>
-            <h1 className={styles.pageTitle}>Qualidade da água em tempo real</h1>
-            <p className={styles.pageSubtitle}>
-              Rede de sensores de pH e turbidez instalada em poços artesianos e criadouros de
-              peixes de Rondônia, com leituras transmitidas automaticamente para a plataforma.
-            </p>
-          </div>
+          <h2 className={styles.pageTitle}>Panorama da rede</h2>
           <p className={styles.liveTag}>
             <span className={styles.liveDot} aria-hidden="true" />
             Leituras ao vivo · {formatTime(lastUpdate)}
