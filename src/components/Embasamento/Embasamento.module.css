@@ -2,7 +2,6 @@
   display: grid;
   grid-template-columns: 1.15fr 1fr;
   gap: 20px;
-  align-items: start;
 }
 
 .side {
@@ -162,8 +161,176 @@
   margin-top: 4px;
 }
 
+.chartsCard {
+  grid-column: 1 / -1;
+}
+
+.charts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px;
+}
+
+/* Cada coluna estica até a mais alta, e o rodapé de fonte desce para o fim,
+   de modo que os três links fiquem na mesma linha. */
+.charts > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.charts > div > :nth-last-child(2) {
+  margin-bottom: 16px;
+}
+
+.chartTitle {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.chartSub {
+  font-size: 0.6875rem;
+  color: var(--color-text-faint);
+  margin: 2px 0 14px;
+}
+
+.chartSource {
+  margin-top: auto;
+  padding-top: 10px;
+  border-top: 1px solid var(--color-border);
+  font-size: 0.6875rem;
+  line-height: 1.5;
+  color: var(--color-text-faint);
+}
+
+.chartSource a {
+  color: var(--color-aqua-deep);
+  font-weight: 500;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+
+.chartSource a:hover {
+  text-decoration: underline;
+}
+
+.chartSource svg {
+  margin-left: 3px;
+  vertical-align: -2px;
+}
+
+.pair {
+  display: grid;
+  gap: 4px;
+}
+
+.pair + .pair {
+  margin-top: 14px;
+}
+
+.pairLabel {
+  font-size: 0.75rem;
+  font-weight: 500;
+  margin-bottom: 2px;
+}
+
+.barRow {
+  display: grid;
+  grid-template-columns: 78px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 8px;
+}
+
+.nurseries {
+  display: grid;
+  gap: 10px;
+}
+
+.nurseries .barRow {
+  grid-template-columns: 112px minmax(0, 1fr) auto;
+}
+
+.barName {
+  font-size: 0.6875rem;
+  color: var(--color-text-muted);
+  line-height: 1.25;
+}
+
+.track {
+  height: 12px;
+  background-color: var(--color-canvas);
+  border-radius: 2px;
+}
+
+.bar {
+  height: 100%;
+  border-radius: 2px;
+}
+
+.barValue {
+  min-width: 52px;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.toneCity {
+  background-color: var(--color-aqua-deep);
+}
+
+.toneAvg {
+  background-color: var(--color-border-strong);
+}
+
+.toneMuted {
+  background-color: var(--color-aqua-border);
+}
+
+.columns {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.columnValue {
+  font-size: 0.625rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.columnTrack {
+  width: 100%;
+  height: 132px;
+  display: flex;
+  align-items: flex-end;
+  background-color: var(--color-canvas);
+  border-radius: 2px;
+}
+
+.columnBar {
+  width: 100%;
+  border-radius: 2px 2px 0 0;
+}
+
+.columnYear {
+  font-size: 0.6875rem;
+  color: var(--color-text-muted);
+}
+
 @media (max-width: 1000px) {
   .section {
+    grid-template-columns: 1fr;
+  }
+
+  .charts {
     grid-template-columns: 1fr;
   }
 }
