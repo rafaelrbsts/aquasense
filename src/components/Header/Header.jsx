@@ -5,6 +5,7 @@ const NAV_ITEMS = [
   { id: 'dashboard', label: 'Dashboard' },
   { id: 'sensores', label: 'Sensores' },
   { id: 'arquitetura', label: 'Arquitetura IoT' },
+  { id: 'embasamento', label: 'Embasamento' },
   { id: 'sobre', label: 'Sobre' },
 ];
 

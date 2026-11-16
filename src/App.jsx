@@ -6,6 +6,7 @@ import SensorMap from './components/Map/SensorMap';
 import SensorPanel from './components/SensorCard/SensorPanel';
 import Legend from './components/Legend/Legend';
 import Architecture from './components/Architecture/Architecture';
+import Embasamento from './components/Embasamento/Embasamento';
 import About from './components/About/About';
 import Footer from './components/Footer/Footer';
 import { useSensorSimulation } from './hooks/useSensorSimulation';
@@ -14,7 +15,7 @@ import { mockSensors } from './data/mockSensors';
 import { SENSOR_TYPE_ALL, filterSensorsByType, formatTime } from './utils/waterQuality';
 import styles from './App.module.css';
 
-const SECTION_IDS = ['dashboard', 'sensores', 'arquitetura', 'sobre'];
+const SECTION_IDS = ['dashboard', 'sensores', 'arquitetura', 'embasamento', 'sobre'];
 
 export default function App() {
   const { sensors, stats, lastUpdate } = useSensorSimulation(mockSensors);
@@ -89,6 +90,10 @@ export default function App() {
 
         <div className={styles.sectionSpacer}>
           <Architecture />
+        </div>
+
+        <div className={styles.sectionSpacer}>
+          <Embasamento />
         </div>
 
         <div className={styles.sectionSpacer}>
